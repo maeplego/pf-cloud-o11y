@@ -1,0 +1,6 @@
+.env
+*.exe
+*.test
+/vendor/
+/apps/demo-api/demo-api
+/apps/demo-api/demo-api.exe
