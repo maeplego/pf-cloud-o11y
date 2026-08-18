@@ -1,0 +1,34 @@
+{
+  "annotations": { "list": [] },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "links": [
+    {
+      "icon": "compass",
+      "tags": [],
+      "targetBlank": false,
+      "title": "Open Tempo Explore",
+      "type": "link",
+      "url": "/explore?orgId=1&left=%7B%22datasource%22:%22tempo%22,%22queries%22:%5B%7B%22refId%22:%22A%22,%22datasource%22:%7B%22type%22:%22tempo%22,%22uid%22:%22tempo%22%7D,%22queryType%22:%22traceql%22,%22query%22:%22%7Bresource.service.name%3D%5C%22media-api%5C%22%7D%22%7D%5D%7D"
+    }
+  ],
+  "panels": [
+    {
+      "gridPos": { "h": 8, "w": 24, "x": 0, "y": 0 },
+      "id": 1,
+      "options": {
+        "content": "## Media API traces\n\nLearning Grafana (`admin` / `admin`). After a drive upload:\n\n1. Click **Open Tempo Explore** (top), or Explore → Tempo.\n2. TraceQL: `{resource.service.name=\"media-api\"}`\n3. Look for `POST /v1/uploads/presign` and `POST /v1/uploads/complete`.\n\nKubernetes `/health` probes are not exported, so the list is not only liveness checks.",
+        "mode": "markdown"
+      },
+      "title": "How to read this demo",
+      "type": "text"
+    }
+  ],
+  "schemaVersion": 39,
+  "tags": ["media-api", "integration"],
+  "time": { "from": "now-15m", "to": "now" },
+  "title": "Media API traces",
+  "uid": "media-api-traces",
+  "version": 1
+}

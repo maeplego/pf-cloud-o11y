@@ -18,6 +18,12 @@ configMapGenerator:
   - name: grafana-datasources
     files:
       - datasources.yaml=grafana-datasources.yaml
+  - name: grafana-dashboards-provider
+    files:
+      - dashboards.yaml=grafana-dashboards.yaml
+  - name: grafana-dashboards
+    files:
+      - media-api-traces.json=grafana-dashboard-media-traces.json
 
 generatorOptions:
   disableNameSuffixHash: true
