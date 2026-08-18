@@ -7,6 +7,7 @@ P02 のローカル可観測性スタックです。**本番 SRE 基盤の置き
 ```
 apps/demo-api/     計装サンプル（/health, /ready, /work, 障害注入）
 deploy/            Compose（Collector, Prometheus, Loki, Tempo, Grafana）
+deploy/k8s/        連携デモ最小（Collector + Tempo + Grafana）。束ね役は pf-cloud-k8s
 docs/              計装ガイドライン（他 pf-* アプリ向け）
 ```
 
