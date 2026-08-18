@@ -15,6 +15,9 @@ configMapGenerator:
   - name: tempo-config
     files:
       - tempo.yaml=tempo-config.yaml
+  - name: grafana-datasources
+    files:
+      - datasources.yaml=grafana-datasources.yaml
 
 generatorOptions:
   disableNameSuffixHash: true
