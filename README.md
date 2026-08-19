@@ -2,13 +2,12 @@
 
 P02 のローカル可観測性スタックです。**本番 SRE 基盤の置き換えではありません。**
 
-アプリは OpenTelemetry SDK で Collector に送り、メトリクス・ログ・トレースを Grafana で相関します。Terraform / Kubernetes は別リポジトリ（`pf-cloud-aws`, `pf-cloud-k8s`）で後フェーズから載せます。
+アプリは OpenTelemetry SDK で Collector に送り、メトリクス・ログ・トレースを Grafana で相関します。Terraform モジュールは面接用（`pf-cloud-aws`、**apply しない**）。Kubernetes 連携は `pf-cloud-k8s`。人間向け書類: `project/portfolio-plan/cloud-platform/docs/`。
 
 ```
 apps/demo-api/     計装サンプル（/health, /ready, /work, 障害注入）
 deploy/            Compose（Collector, Prometheus, Loki, Tempo, Grafana）
 deploy/k8s/        連携デモ最小（Collector + Tempo + Grafana）。束ね役は pf-cloud-k8s
-docs/              計装ガイドライン（他 pf-* アプリ向け）
 ```
 
 ## 起動
@@ -40,7 +39,7 @@ Grafana で p95 上昇・5xx・トレースを確認します。
 
 ## 他アプリへの接続
 
-`docs/instrumentation.md` を参照。最低限:
+計装の正本は `project/portfolio-plan/cloud-platform/docs/`。最低限:
 
 - `GET /health`, `GET /ready`
 - `OTEL_EXPORTER_OTLP_ENDPOINT=http://otel-collector:4318`
