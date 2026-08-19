@@ -1,9 +1,5 @@
-# P02 observability — Kubernetes（連携デモ最小）
+# Kubernetes マニフェスト（観測）
 
-Collector + Tempo + Grafana。フルスタック（Prometheus / Loki / Promtail）は Compose 単体デモで確認する。
+連携デモ用の最小構成です。Collector、Tempo、Grafana です。Prometheus / Loki のフルスタックは Compose で確認してください。
 
-Grafana のホームは **Media API traces**（Tempo Explore への案内）。Collector イメージは `0.88.0`（`0.116.x` distroless が一部 Docker Desktop 環境で起動不能なため）。
-
-Collector イメージは `0.88.0`（`0.116.x` distroless が一部 Docker Desktop 環境で起動不能なため）。
-
-Tempo 設定は `tempo-config.yaml`（Compose 版 `deploy/tempo/tempo.yaml` と同等）を k8s 配下に置く。
+起動は [pf-cloud-k8s](https://github.com/maeplego/pf-cloud-k8s) からです。このフォルダだけを apply しないでください。Collector イメージは `0.88.0` です（新しい distroless が一部の Docker Desktop で起動しないため）。
