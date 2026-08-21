@@ -1,0 +1,12 @@
+groups:
+  - name: portfolio-collab-staging
+    rules:
+      # Minimal Collab staging alert: observability pipeline must stay reachable.
+      - alert: OtelCollectorDown
+        expr: up{job="otel-collector"} == 0
+        for: 2m
+        labels:
+          severity: warning
+        annotations:
+          summary: OpenTelemetry Collector scrape target is down
+          description: Collab staging cannot rely on OTLP if the collector job is missing.

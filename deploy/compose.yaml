@@ -7,7 +7,7 @@ services:
       OTEL_SERVICE_NAME: demo-api
       ENABLE_DEBUG: "true"
     ports:
-      - "8080:8080"
+      - "8088:8080"
     depends_on:
       otel-collector:
         condition: service_started
@@ -26,6 +26,7 @@ services:
     image: prom/prometheus:v2.55.0
     volumes:
       - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - ./prometheus/alerts.yml:/etc/prometheus/alerts.yml:ro
     ports:
       - "9090:9090"
 
@@ -64,7 +65,7 @@ services:
       - ./grafana/provisioning:/etc/grafana/provisioning:ro
       - ./grafana/dashboards:/etc/grafana/dashboards:ro
     ports:
-      - "127.0.0.1:3000:3000"
+      - "3020:3000"
     depends_on:
       - prometheus
       - loki
