@@ -10,3 +10,29 @@ groups:
         annotations:
           summary: OpenTelemetry Collector scrape target is down
           description: Collab staging cannot rely on OTLP if the collector job is missing.
+  - name: portfolio-demo-sli
+    rules:
+      - alert: DemoAPIHigh5xxRate
+        expr: |
+          sum(rate(http_server_request_duration_seconds_count{job="otel-collector",http_response_status_code=~"5.."}[5m]))
+          /
+          clamp_min(sum(rate(http_server_request_duration_seconds_count{job="otel-collector"}[5m])), 1)
+          > 0.05
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: Demo HTTP 5xx rate above 5%
+          description: Portfolio demo traffic is returning elevated server errors (OTLP metrics via collector).
+      - alert: DemoAPIHighP95Latency
+        expr: |
+          histogram_quantile(
+            0.95,
+            sum by (le) (rate(http_server_request_duration_seconds_bucket{job="otel-collector"}[5m]))
+          ) > 2
+        for: 10m
+        labels:
+          severity: warning
+        annotations:
+          summary: Demo HTTP p95 latency above 2s
+          description: Portfolio demo request latency p95 exceeded 2 seconds for 10 minutes.
